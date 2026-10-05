@@ -1,42 +1,707 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisuAlgo PTIK - Visualisasi Searching</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo">VisuAlgo PTIK</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="sorting.html">Sorting</a></li>
-            <li><a href="searching.html" class="active">Searching</a></li>
-            <li><a href="petunjuk.html">Petunjuk</a></li>
-        </ul>
-    </nav>
 
-    <main class="container">
-        <h1>Visualisasi Algoritma Searching</h1>
+<html class="dark" lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"error-container":"#93000a","primary":"#4cd7f6","inverse-on-surface":"#2c303b","on-error":"#690005","surface-tint":"#4cd7f6","outline-variant":"#3d494c","inverse-primary":"#00687a","surface-container-high":"#262a35","surface-container-low":"#171b26","tertiary-container":"#e79400","surface-variant":"#313540","primary-fixed-dim":"#4cd7f6","on-surface-variant":"#bcc9cd","inverse-surface":"#dfe2f1","on-tertiary":"#472a00","background":"#0f131d","surface-dim":"#0f131d","tertiary-fixed-dim":"#ffb95f","outline":"#869397","on-tertiary-fixed":"#2a1700","on-secondary-fixed-variant":"#005236","tertiary":"#ffb95f","surface-bright":"#353944","on-tertiary-container":"#563400","secondary-fixed":"#6ffbbe","on-primary-fixed-variant":"#004e5c","secondary-container":"#00a572","on-secondary":"#003824","surface":"#0f131d","secondary":"#4edea3","on-primary":"#003640","error":"#ffb4ab","on-tertiary-fixed-variant":"#653e00","on-surface":"#dfe2f1","on-secondary-fixed":"#002113","primary-container":"#06b6d4","surface-container":"#1c1f2a","on-primary-container":"#00424f","on-secondary-container":"#00311f","secondary-fixed-dim":"#4edea3","surface-container-highest":"#313540","surface-container-lowest":"#0a0e18","on-error-container":"#ffdad6","tertiary-fixed":"#ffddb8","on-primary-fixed":"#001f26","primary-fixed":"#acedff","on-background":"#dfe2f1"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-md":"1rem","margin":"2rem","gutter-mobile":"0.75rem","space-xl":"2.5rem","gutter":"1.25rem","space-xs":"0.25rem","margin-mobile":"1rem","space-lg":"1.5rem","space-sm":"0.5rem"},"fontFamily":{"body-lg":["Inter"],"label-mono":["JetBrains Mono"],"label-badge":["JetBrains Mono"],"headline-lg-mobile":["Plus Jakarta Sans"],"code-block":["JetBrains Mono"],"body-sm":["Inter"],"display-hero":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"]},"fontSize":{"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"400"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"label-badge":["11px",{"lineHeight":"14px","letterSpacing":"0.06em","fontWeight":"600"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"code-block":["13px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"400"}],"display-hero":["48px",{"lineHeight":"56px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-hero-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"800"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"0em","fontWeight":"600"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}};</script></head><body class="bg-background text-on-surface font-body-md text-body-md min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_12px_32px_-4px_rgba(6,182,212,0.08),0_4px_12px_rgba(0,0,0,0.5)]"><div class="h-16 w-full px-gutter md:px-margin flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm group" data-path="beranda" href="#"><div class="flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container-high shadow-[0_0_15px_rgba(76,215,246,0.25)]"><span class="material-symbols-outlined text-primary text-[20px]">terminal</span></div><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-bold">VisuAlgo</span><span class="font-label-badge text-label-badge px-space-xs py-0.5 rounded bg-primary-container/20 text-primary shadow-[0_0_10px_rgba(6,182,212,0.4)]">PTIK</span></div></div></a></div><nav class="hidden md:flex items-center gap-space-xs p-1 rounded-xl bg-surface-container-low" data-active-classes="bg-surface-container-high text-primary font-semibold rounded-lg"><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-path="beranda" href="#">Beranda</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-path="sorting" href="#">Sorting</a><a aria-current="page" class="px-space-md py-1.5 transition-all bg-surface-container-high text-primary font-semibold rounded-lg" data-path="searching" href="#">Searching</a><a class="px-space-md py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-path="petunjuk" href="#">Petunjuk</a></nav><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(78,222,163,0.8)]"></span><span class="font-label-mono text-label-mono text-on-surface-variant">v2.0 ADDIE</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<section class="w-full px-gutter md:px-margin pt-space-md pb-space-lg flex flex-col gap-space-md relative overflow-hidden">
+<div class="absolute -top-24 -right-12 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
+<div class="absolute top-48 left-1/3 w-80 h-80 rounded-full bg-secondary/5 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md relative z-10">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="flex items-center gap-space-xs text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-[16px]">manage_search</span>
+<span>MODUL 03 • ALGORITMA PENCARIAN TERSTRUKTUR</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-extrabold">Visualisasi Algoritma Searching</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Eksplorasi eksekusi langkah demi langkah penelusuran elemen data secara komputasional. Amati mekanisme penelusuran sekuensial versus pembagian interval biner.
+        </p>
+</div>
+<div class="flex items-center p-1 rounded-xl bg-surface-container-high shadow-lg">
+<button class="px-space-md py-2 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface" id="btn-algo-linear" onclick="setAlgorithm('linear')">
+<span class="material-symbols-outlined text-[18px]">reorder</span>
+<span>Linear Search</span>
+</button>
+<button class="px-space-md py-2 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-space-xs bg-primary text-on-primary font-bold shadow-[0_0_15px_rgba(76,215,246,0.35)]" id="btn-algo-binary" onclick="setAlgorithm('binary')">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span>Binary Search</span>
+</button>
+</div>
+</div>
+<div class="w-full rounded-xl bg-surface-container-low p-space-md flex items-center justify-between gap-space-md shadow-md relative z-10" id="smart-banner">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/20 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+            Notifikasi Algoritma Cerdas
+            <span class="font-label-badge text-label-badge uppercase px-space-xs py-0.5 rounded bg-tertiary/20 text-tertiary">Prekondisi</span>
+</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="smart-banner-desc">
+            Binary Search memerlukan data terurut secara otomatis sebelum pencarian dijalankan. Klik "Data Acak" atau ganti dataset dan sistem akan menjamin urutan ascending.
+          </p>
+</div>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs shrink-0">
+<span class="font-label-mono text-label-mono px-space-sm py-1 rounded bg-surface-container text-on-surface-variant">DIVIDE &amp; CONQUER</span>
+</div>
+</div>
+</section>
+<div class="w-full px-gutter md:px-margin grid grid-cols-1 xl:grid-cols-12 gap-space-lg mb-space-xl">
+<div class="xl:col-span-8 flex flex-col gap-space-lg">
+<div class="w-full rounded-xl bg-surface-container-lowest p-space-lg flex flex-col gap-space-lg shadow-xl relative min-h-[380px] justify-between">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">view_array</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Array Memory Space</span>
+<span class="font-label-mono text-label-mono px-space-xs py-0.5 rounded bg-surface-container-high text-primary" id="label-dataset-size">N = 10 Elemen</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm font-label-badge text-label-badge">
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-low text-on-surface-variant">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+<span>Belum</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-low text-on-surface-variant">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary shadow-[0_0_8px_rgba(255,185,95,0.7)]"></span>
+<span>Diperiksa</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-low text-on-surface-variant" id="legend-mid-tag">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container shadow-[0_0_8px_rgba(231,148,0,0.8)]"></span>
+<span>Tengah (Mid)</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-low text-on-surface-variant">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(78,222,163,0.8)]"></span>
+<span>Ditemukan</span>
+</div>
+<div class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-low text-on-surface-variant">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant opacity-40"></span>
+<span>Eliminasi</span>
+</div>
+</div>
+</div>
+<div class="w-full overflow-x-auto py-space-md flex items-center justify-center min-h-[180px]">
+<div class="flex items-end justify-center gap-3 px-4 min-w-full md:min-w-0" id="array-container">
+</div>
+</div>
+<div class="w-full pt-space-sm flex flex-col md:flex-row items-center justify-between gap-space-md bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-md rounded-b-xl">
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-mono text-label-mono text-on-surface-variant">Langkah:</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary" id="metric-steps">0</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-mono text-label-mono text-on-surface-variant">Perbandingan:</span>
+<span class="font-headline-sm text-headline-sm font-bold text-tertiary" id="metric-comps">0</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-mono text-label-mono text-on-surface-variant">Status Mesin:</span>
+<span class="font-label-badge text-label-badge uppercase px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface" id="metric-status-pill">Siap Dijalankan</span>
+</div>
+</div>
+</div>
+<div class="w-full rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-md shadow-lg">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm flex-1 min-w-[240px]">
+<label class="font-label-mono text-label-mono text-on-surface-variant shrink-0 flex items-center gap-1" for="input-target">
+<span class="material-symbols-outlined text-[16px] text-primary">gps_fixed</span>
+<span>TARGET NILAI:</span>
+</label>
+<div class="relative flex-1 max-w-[160px]">
+<input class="w-full bg-surface-container-lowest text-on-surface font-headline-sm text-headline-sm font-bold px-space-sm py-1.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" id="input-target" type="number" value="42"/>
+</div>
+<button class="px-space-sm py-2 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-mono text-label-mono transition-colors" onclick="applyTargetFromInput()">
+              Terapkan
+            </button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-lg py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm font-bold flex items-center gap-space-xs shadow-[0_0_20px_rgba(76,215,246,0.35)] transition-all" id="btn-play" onclick="handlePlayToggle()">
+<span class="material-symbols-outlined text-[20px]" id="btn-play-icon">play_arrow</span>
+<span id="btn-play-text">Mulai Cari</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface font-headline-sm text-headline-sm font-semibold flex items-center gap-space-xs transition-colors" id="btn-step" onclick="stepSearch()">
+<span class="material-symbols-outlined text-[20px]">redo</span>
+<span>Langkah</span>
+</button>
+<button class="p-2.5 rounded-lg bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface transition-colors" id="btn-reset" onclick="resetSearchEngine()" title="Reset Simulasi">
+<span class="material-symbols-outlined text-[20px]">replay</span>
+</button>
+</div>
+</div>
+<div class="w-full pt-space-xs flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-mono text-label-mono flex items-center gap-1.5 transition-colors" onclick="generateRandomData()">
+<span class="material-symbols-outlined text-[16px] text-secondary">casino</span>
+<span>Data Acak</span>
+</button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-mono text-label-mono flex items-center gap-1.5 transition-colors" onclick="promptManualData()">
+<span class="material-symbols-outlined text-[16px] text-primary">edit_note</span>
+<span>Input Manual</span>
+</button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-mono text-label-mono flex items-center gap-1.5 transition-colors" onclick="shuffleTarget()">
+<span class="material-symbols-outlined text-[16px] text-tertiary">shuffle</span>
+<span>Pilih Target Eksis</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm min-w-[220px]">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">speed</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant shrink-0">Kecepatan:</span>
+<input class="w-full accent-primary cursor-pointer" id="slider-speed" max="1800" min="300" oninput="updateSpeed(this.value)" step="100" type="range" value="900"/>
+<span class="font-label-mono text-label-mono text-primary min-w-[45px] text-right" id="speed-label">0.9s</span>
+</div>
+</div>
+</div>
+</div>
+<div class="xl:col-span-4 flex flex-col gap-space-lg">
+<div class="w-full rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-sm shadow-xl">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Inspektur Langkah</span>
+</div>
+<span class="font-label-badge text-label-badge uppercase px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant">Live Tracer</span>
+</div>
+<div class="w-full rounded-lg bg-surface-container-lowest p-space-md min-h-[140px] flex flex-col justify-between" id="explanation-box">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs font-label-mono text-label-mono text-primary" id="trace-step-title">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>LANGKAH 0: INITIALIZATION</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed" id="trace-step-narrative">
+              Tekan tombol "Mulai Cari" untuk menjalankan visualisasi penelusuran target, atau "Langkah" untuk mengevaluasi kondisi secara bertahap.
+            </p>
+</div>
+<div class="flex flex-wrap gap-space-xs pt-space-sm font-label-mono text-label-mono text-on-surface-variant" id="trace-variables">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface">Target: <strong class="text-primary font-bold" id="trace-val-target">42</strong></span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface" id="trace-badge-idx">Indeks: -</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<span class="font-label-mono text-label-mono text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">code</span>
+<span>PSEUDOCODE SYNCHRONIZER</span>
+</span>
+<div class="rounded-lg bg-surface-container-lowest p-space-sm font-code-block text-code-block flex flex-col gap-1 text-on-surface-variant select-none" id="pseudocode-container">
+</div>
+</div>
+</div>
+<div class="w-full rounded-xl bg-surface-container-low p-space-md flex flex-col gap-space-sm shadow-xl">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">analytics</span>
+<span>Analisis Operasi</span>
+</span>
+<span class="font-label-badge text-label-badge uppercase px-space-xs py-0.5 rounded bg-secondary-container/20 text-secondary" id="complexity-badge-dynamic">
+            O(log N)
+          </span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="rounded-lg bg-surface-container-lowest p-space-sm flex flex-col">
+<span class="font-label-mono text-label-mono text-on-surface-variant">Kapasitas Array</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface" id="metric-n-elements">10</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Elemen tersimpan</span>
+</div>
+<div class="rounded-lg bg-surface-container-lowest p-space-sm flex flex-col">
+<span class="font-label-mono text-label-mono text-on-surface-variant">Maksimal Langkah</span>
+<span class="font-headline-md text-headline-md font-bold text-primary" id="metric-max-steps">4</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="metric-max-steps-formula">⌈log2(10)⌉ komparasi</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section class="w-full px-gutter md:px-margin pb-space-xl flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-[16px]">compare_arrows</span>
+<span>KOMPARASI ASIMPTOTIK TEORITIS</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight">Tabel Perbandingan Kompleksitas Waktu</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+        Efisiensi pencarian dipengaruhi oleh struktur data awal dan metode pencabangan evaluasi. Berikut adalah perbandingan matematis antara kedua algoritma fundamental.
+      </p>
+</div>
+<div class="w-full overflow-hidden rounded-xl bg-surface-container-low shadow-xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high text-on-surface font-label-mono text-label-mono uppercase tracking-wider">
+<th class="py-space-md px-space-lg">Algoritma</th>
+<th class="py-space-md px-space-md">Kasus Terbaik (Best)</th>
+<th class="py-space-md px-space-md">Kasus Rata-rata (Avg)</th>
+<th class="py-space-md px-space-md">Kasus Terburuk (Worst)</th>
+<th class="py-space-md px-space-md">Kompleksitas Ruang</th>
+<th class="py-space-md px-space-lg">Syarat Dataset</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-md text-body-md">
+<tr class="transition-colors hover:bg-surface-container" id="row-linear">
+<td class="py-space-md px-space-lg font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span>Linear Search</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-mono text-label-mono bg-secondary-container/20 text-secondary font-bold">
+                  O(1)
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Elemen pertama cocok</p>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-mono text-label-mono bg-tertiary-container/20 text-tertiary font-bold">
+                  O(N)
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Rata-rata N/2 periksa</p>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-mono text-label-mono bg-error-container/20 text-error font-bold">
+                  O(N)
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Elemen di akhir / nihil</p>
+</td>
+<td class="py-space-md px-space-md font-label-mono text-label-mono text-on-surface">
+                O(1)
+              </td>
+<td class="py-space-md px-space-lg">
+<span class="font-label-badge text-label-badge px-space-xs py-1 rounded bg-surface-container-high text-on-surface-variant">
+                  Tidak Terurut (Acak)
+                </span>
+</td>
+</tr>
+<tr class="bg-surface-container/60 transition-colors hover:bg-surface-container" id="row-binary">
+<td class="py-space-md px-space-lg font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span>Binary Search</span>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-mono text-label-mono bg-secondary-container/20 text-secondary font-bold">
+                  O(1)
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Elemen poros mid cocok</p>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-mono text-label-mono bg-primary-container/20 text-primary font-bold">
+                  O(log N)
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Eliminasi separuh ruang</p>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded font-label-mono text-label-mono bg-primary-container/20 text-primary font-bold">
+                  O(log N)
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Pembagian tuntas nihil</p>
+</td>
+<td class="py-space-md px-space-md font-label-mono text-label-mono text-on-surface">
+                O(1)
+              </td>
+<td class="py-space-md px-space-lg">
+<span class="font-label-badge text-label-badge px-space-xs py-1 rounded bg-secondary-container/20 text-secondary font-bold">
+                  Wajib Terurut Ascending
+                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-space-md bg-surface-container-high/40 flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong class="text-on-surface">Implikasi Skala Besar:</strong> Untuk 1,000,000 elemen, Linear Search butuh hingga 1,000,000 komparasi, sedangkan Binary Search hanya membutuhkan maksimum ~20 komparasi.
+        </p>
+<span class="font-label-mono text-label-mono text-secondary">Efisiensi Eksponensial</span>
+</div>
+</div>
+</section>
+<script>
+    let currentAlgorithm = 'binary';
+    let dataArray = [12, 19, 25, 33, 42, 57, 68, 74, 88, 95];
+    let targetValue = 42;
+    let stepCount = 0;
+    let comparisonCount = 0;
+    let isPlaying = false;
+    let playInterval = null;
+    let animSpeed = 900;
+
+    let binaryLow = 0;
+    let binaryHigh = dataArray.length - 1;
+    let binaryMid = -1;
+    let binaryFound = false;
+    let binaryPhase = 'CALC_MID';
+
+    let linearIndex = 0;
+    let linearFound = false;
+
+    const pseudoLinear = [
+      { line: 0, text: 'procedure linearSearch(arr, target):' },
+      { line: 1, text: '  for i = 0 to length(arr) - 1 do' },
+      { line: 2, text: '    if arr[i] == target then' },
+      { line: 3, text: '      return i  // Ditemukan' },
+      { line: 4, text: '  return -1    // Tidak Ditemukan' }
+    ];
+
+    const pseudoBinary = [
+      { line: 0, text: 'procedure binarySearch(arr, target):' },
+      { line: 1, text: '  low = 0, high = length(arr) - 1' },
+      { line: 2, text: '  while low <= high do' },
+      { line: 3, text: '    mid = floor((low + high) / 2)' },
+      { line: 4, text: '    if arr[mid] == target then return mid' },
+      { line: 5, text: '    else if arr[mid] < target then low = mid + 1' },
+      { line: 6, text: '    else high = mid - 1' },
+      { line: 7, text: '  return -1 // Tidak Ditemukan' }
+    ];
+
+    function initVisualizer() {
+      updatePseudocodeView();
+      renderArray();
+      updateMetrics();
+      updateTheoreticalStats();
+    }
+
+    function setAlgorithm(algo) {
+      if (isPlaying) pauseSimulation();
+      currentAlgorithm = algo;
+
+      const btnLinear = document.getElementById('btn-algo-linear');
+      const btnBinary = document.getElementById('btn-algo-binary');
+      const bannerDesc = document.getElementById('smart-banner-desc');
+      const legendMid = document.getElementById('legend-mid-tag');
+      const compBadge = document.getElementById('complexity-badge-dynamic');
+
+      if (algo === 'linear') {
+        btnLinear.className = 'px-space-md py-2 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-space-xs bg-primary text-on-primary font-bold shadow-[0_0_15px_rgba(76,215,246,0.35)]';
+        btnBinary.className = 'px-space-md py-2 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface';
+        bannerDesc.innerText = 'Linear Search menelusuri array satu demi satu dari indeks awal [0] tanpa memerlukan data terurut terlebih dahulu.';
+        legendMid.classList.add('hidden');
+        compBadge.innerText = 'O(N)';
+        compBadge.className = 'font-label-badge text-label-badge uppercase px-space-xs py-0.5 rounded bg-tertiary-container/20 text-tertiary';
+      } else {
+        btnBinary.className = 'px-space-md py-2 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-space-xs bg-primary text-on-primary font-bold shadow-[0_0_15px_rgba(76,215,246,0.35)]';
+        btnLinear.className = 'px-space-md py-2 rounded-lg font-headline-sm text-headline-sm transition-all duration-200 flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface';
+        bannerDesc.innerText = 'Binary Search memerlukan data terurut secara otomatis sebelum pencarian dijalankan. Setiap langkah mengeliminasi separuh ruang pencarian.';
+        legendMid.classList.remove('hidden');
+        compBadge.innerText = 'O(log N)';
+        compBadge.className = 'font-label-badge text-label-badge uppercase px-space-xs py-0.5 rounded bg-secondary-container/20 text-secondary';
         
-        <div class="algo-selector">
-            <button onclick="selectSearchingAlgo('linear')">Linear Search</button>
-            <button onclick="selectSearchingAlgo('binary')">Binary Search</button>
-        </div>
+        dataArray.sort((a, b) => a - b);
+      }
 
-        <div class="visualizer-container">
-            <div id="search-array-container" class="array-memory-space"></div>
-        </div>
+      resetSearchEngine();
+      updatePseudocodeView();
+      updateTheoreticalStats();
+    }
 
-        <div class="control-panel">
-            <input type="number" id="target-value" placeholder="Target Nilai">
-            <button id="btn-search">Mulai Cari</button>
-            <button id="btn-search-step">Langkah</button>
-            <button id="btn-search-shuffle">Data Acak</button>
-        </div>
-    </main>
+    function updatePseudocodeView(activeLine = -1) {
+      const container = document.getElementById('pseudocode-container');
+      const lines = currentAlgorithm === 'binary' ? pseudoBinary : pseudoLinear;
 
-    <script src="js/searching.js"></script>
-</body>
-</html>
+      container.innerHTML = lines.map(item => {
+        const isActive = item.line === activeLine;
+        const lineClass = isActive 
+          ? 'bg-primary/20 text-primary font-bold px-2 py-1 rounded shadow-sm' 
+          : 'px-2 py-0.5 hover:bg-surface-container-high/40 transition-colors';
+        return `<div class="${lineClass}">${item.text}</div>`;
+      }).join('');
+    }
+
+    function renderArray() {
+      const container = document.getElementById('array-container');
+      container.innerHTML = '';
+
+      dataArray.forEach((val, idx) => {
+        let stateBg = 'bg-surface-container-high text-on-surface';
+        let statusTag = '';
+        let extraClasses = '';
+
+        if (currentAlgorithm === 'linear') {
+          if (linearFound && idx === linearIndex) {
+            stateBg = 'bg-secondary text-on-secondary font-bold shadow-[0_0_16px_rgba(78,222,163,0.7)] scale-105';
+            statusTag = '<span class="font-label-badge text-label-badge px-1 py-0.5 rounded bg-secondary-container text-on-secondary-container">Ditemukan</span>';
+          } else if (idx === linearIndex && stepCount > 0 && !linearFound) {
+            stateBg = 'bg-tertiary text-on-tertiary font-bold shadow-[0_0_14px_rgba(255,185,95,0.7)] scale-105';
+            statusTag = '<span class="font-label-badge text-label-badge px-1 py-0.5 rounded bg-tertiary-container text-on-tertiary-container">Diperiksa</span>';
+          } else if (idx < linearIndex) {
+            stateBg = 'bg-surface-container-low text-on-surface-variant opacity-45';
+            statusTag = '<span class="font-label-badge text-label-badge text-outline">&ne; Target</span>';
+          } else {
+            stateBg = 'bg-surface-container text-on-surface';
+          }
+        } else {
+          // Binary Search
+          const isOutRange = idx < binaryLow || idx > binaryHigh;
+          if (binaryFound && idx === binaryMid) {
+            stateBg = 'bg-secondary text-on-secondary font-bold shadow-[0_0_18px_rgba(78,222,163,0.8)] scale-105';
+            statusTag = '<span class="font-label-badge text-label-badge px-1 py-0.5 rounded bg-secondary-container text-on-secondary-container">Ditemukan</span>';
+          } else if (idx === binaryMid) {
+            stateBg = 'bg-tertiary-container text-on-tertiary font-bold shadow-[0_0_15px_rgba(231,148,0,0.8)] scale-105';
+            statusTag = '<span class="font-label-badge text-label-badge px-1 py-0.5 rounded bg-tertiary text-on-tertiary">Mid (Tengah)</span>';
+          } else if (idx === binaryLow && idx === binaryHigh) {
+            statusTag = '<span class="font-label-badge text-label-badge px-1 py-0.5 rounded bg-primary-container text-on-primary-container">Low & High</span>';
+            stateBg = 'bg-surface-container-high text-primary';
+          } else if (idx === binaryLow) {
+            statusTag = '<span class="font-label-badge text-label-badge px-1 py-0.5 rounded bg-primary-container text-on-primary-container">Low [' + idx + ']</span>';
+          } else if (idx === binaryHigh) {
+            statusTag = '<span class="font-label-badge text-label-badge px-1 py-0.5 rounded bg-primary-container text-on-primary-container">High [' + idx + ']</span>';
+          }
+
+          if (isOutRange && !binaryFound) {
+            stateBg = 'bg-surface-container-lowest text-on-surface-variant opacity-35';
+            extraClasses = 'grayscale';
+          }
+        }
+
+        const cell = document.createElement('div');
+        cell.className = `flex flex-col items-center gap-1.5 transition-all duration-300 min-w-[54px] md:min-w-[64px] ${extraClasses}`;
+        cell.innerHTML = `
+          <div class="h-6 flex items-center justify-center">${statusTag}</div>
+          <div class="w-full h-16 md:h-20 rounded-xl flex items-center justify-center font-headline-md text-headline-md tracking-tight ${stateBg} transition-all duration-300">
+            ${val}
+          </div>
+          <div class="font-label-mono text-label-mono text-outline-variant">[${idx}]</div>
+        `;
+        container.appendChild(cell);
+      });
+
+      document.getElementById('label-dataset-size').innerText = `N = ${dataArray.length} Elemen`;
+      document.getElementById('trace-val-target').innerText = targetValue;
+    }
+
+    function stepSearch() {
+      if (currentAlgorithm === 'linear') {
+        stepLinear();
+      } else {
+        stepBinary();
+      }
+      renderArray();
+      updateMetrics();
+    }
+
+    function stepLinear() {
+      if (linearFound || linearIndex >= dataArray.length) {
+        pauseSimulation();
+        return;
+      }
+
+      stepCount++;
+      comparisonCount++;
+      const currentVal = dataArray[linearIndex];
+
+      document.getElementById('trace-step-title').innerHTML = `<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>LANGKAH ${stepCount}: EVALUASI INDEKS [${linearIndex}]</span>`;
+      document.getElementById('trace-badge-idx').innerText = `Indeks [${linearIndex}]: Nilai = ${currentVal}`;
+      updatePseudocodeView(2);
+
+      if (currentVal === targetValue) {
+        linearFound = true;
+        updatePseudocodeView(3);
+        document.getElementById('trace-step-narrative').innerHTML = `<strong class="text-secondary">PENCARIAN BERHASIL!</strong> Elemen target <strong>${targetValue}</strong> ditemukan tepat pada indeks <strong>[${linearIndex}]</strong> setelah <strong>${comparisonCount}</strong> komparasi.`;
+        document.getElementById('metric-status-pill').innerText = `Ditemukan di [${linearIndex}]`;
+        document.getElementById('metric-status-pill').className = 'font-label-badge text-label-badge uppercase px-space-sm py-1 rounded-full bg-secondary-container/30 text-secondary font-bold';
+        pauseSimulation();
+      } else {
+        document.getElementById('trace-step-narrative').innerHTML = `Membandingkan <code>arr[${linearIndex}] = ${currentVal}</code> dengan target <code>${targetValue}</code>. Tidak cocok (&ne;). Geser pointer indeks maju ke kanan (i++).`;
+        linearIndex++;
+        if (linearIndex >= dataArray.length) {
+          updatePseudocodeView(4);
+          document.getElementById('trace-step-narrative').innerHTML = `<strong class="text-error">TIDAK DITEMUKAN!</strong> Seluruh elemen hingga akhir array telah diperiksa dan target <strong>${targetValue}</strong> tidak ada dalam dataset.`;
+          document.getElementById('metric-status-pill').innerText = 'Tidak Ditemukan';
+          document.getElementById('metric-status-pill').className = 'font-label-badge text-label-badge uppercase px-space-sm py-1 rounded-full bg-error-container/30 text-error font-bold';
+          pauseSimulation();
+        }
+      }
+    }
+
+    function stepBinary() {
+      if (binaryFound || binaryLow > binaryHigh) {
+        pauseSimulation();
+        return;
+      }
+
+      if (binaryPhase === 'CALC_MID') {
+        stepCount++;
+        binaryMid = Math.floor((binaryLow + binaryHigh) / 2);
+        updatePseudocodeView(3);
+        document.getElementById('trace-step-title').innerHTML = `<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span>LANGKAH ${stepCount}: KALKULASI POROS TENGAH</span>`;
+        document.getElementById('trace-step-narrative').innerHTML = `Rentang aktif indeks saat ini: <code>[${binaryLow} .. ${binaryHigh}]</code>. Poros tengah: <code>mid = floor((${binaryLow} + ${binaryHigh}) / 2) = ${binaryMid}</code> (Nilai: <strong>${dataArray[binaryMid]}</strong>).`;
+        document.getElementById('trace-badge-idx').innerText = `Rentang: [${binaryLow}..${binaryHigh}] &bull; Mid: [${binaryMid}]`;
+        binaryPhase = 'COMPARE';
+      } else if (binaryPhase === 'COMPARE') {
+        comparisonCount++;
+        const midVal = dataArray[binaryMid];
+
+        if (midVal === targetValue) {
+          binaryFound = true;
+          updatePseudocodeView(4);
+          document.getElementById('trace-step-title').innerHTML = `<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span>LANGKAH ${stepCount}: KECOCOKAN DITEMUKAN</span>`;
+          document.getElementById('trace-step-narrative').innerHTML = `<strong class="text-secondary">TARGET COCOK!</strong> Nilai poros <code>arr[${binaryMid}] = ${midVal}</code> sama persis dengan target <code>${targetValue}</code>. Pencarian selesai secara optimal.`;
+          document.getElementById('metric-status-pill').innerText = `Ditemukan di [${binaryMid}]`;
+          document.getElementById('metric-status-pill').className = 'font-label-badge text-label-badge uppercase px-space-sm py-1 rounded-full bg-secondary-container/30 text-secondary font-bold';
+          pauseSimulation();
+        } else if (midVal < targetValue) {
+          updatePseudocodeView(5);
+          document.getElementById('trace-step-title').innerHTML = `<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>LANGKAH ${stepCount}: PERGESERAN INTERVAL KANAN</span>`;
+          document.getElementById('trace-step-narrative').innerHTML = `<code>arr[${binaryMid}] = ${midVal} < ${targetValue}</code>. Karena data terurut naik, target pasti berada di separuh kanan. Eliminasi sub-array kiri, perbarui <code>low = mid + 1 = ${binaryMid + 1}</code>.`;
+          binaryLow = binaryMid + 1;
+          binaryPhase = 'CALC_MID';
+        } else {
+          updatePseudocodeView(6);
+          document.getElementById('trace-step-title').innerHTML = `<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span>LANGKAH ${stepCount}: PERGESERAN INTERVAL KIRI</span>`;
+          document.getElementById('trace-step-narrative').innerHTML = `<code>arr[${binaryMid}] = ${midVal} > ${targetValue}</code>. Target lebih kecil daripada poros tengah. Eliminasi sub-array kanan, perbarui <code>high = mid - 1 = ${binaryMid - 1}</code>.`;
+          binaryHigh = binaryMid - 1;
+          binaryPhase = 'CALC_MID';
+        }
+
+        if (binaryLow > binaryHigh && !binaryFound) {
+          updatePseudocodeView(7);
+          document.getElementById('trace-step-narrative').innerHTML = `<strong class="text-error">TIDAK DITEMUKAN!</strong> Interval menyusut sepenuhnya (<code>low > high</code>). Target <strong>${targetValue}</strong> tidak ada dalam struktur data.`;
+          document.getElementById('metric-status-pill').innerText = 'Tidak Ditemukan';
+          document.getElementById('metric-status-pill').className = 'font-label-badge text-label-badge uppercase px-space-sm py-1 rounded-full bg-error-container/30 text-error font-bold';
+          pauseSimulation();
+        }
+      }
+    }
+
+    function handlePlayToggle() {
+      if (isPlaying) {
+        pauseSimulation();
+      } else {
+        startSimulation();
+      }
+    }
+
+    function startSimulation() {
+      if ((currentAlgorithm === 'linear' && (linearFound || linearIndex >= dataArray.length)) ||
+          (currentAlgorithm === 'binary' && (binaryFound || binaryLow > binaryHigh))) {
+        resetSearchEngine();
+      }
+
+      isPlaying = true;
+      document.getElementById('btn-play-text').innerText = 'Jeda';
+      document.getElementById('btn-play-icon').innerText = 'pause';
+      document.getElementById('btn-play').className = 'px-space-lg py-2.5 rounded-lg bg-tertiary hover:bg-tertiary-container text-on-tertiary font-headline-sm text-headline-sm font-bold flex items-center gap-space-xs shadow-[0_0_20px_rgba(255,185,95,0.4)] transition-all';
+      document.getElementById('metric-status-pill').innerText = 'Sedang Menelusuri...';
+      document.getElementById('metric-status-pill').className = 'font-label-badge text-label-badge uppercase px-space-sm py-1 rounded-full bg-primary-container/20 text-primary font-bold';
+
+      playInterval = setInterval(() => {
+        stepSearch();
+      }, animSpeed);
+    }
+
+    function pauseSimulation() {
+      isPlaying = false;
+      clearInterval(playInterval);
+      playInterval = null;
+      document.getElementById('btn-play-text').innerText = 'Mulai Cari';
+      document.getElementById('btn-play-icon').innerText = 'play_arrow';
+      document.getElementById('btn-play').className = 'px-space-lg py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm font-bold flex items-center gap-space-xs shadow-[0_0_20px_rgba(76,215,246,0.35)] transition-all';
+    }
+
+    function resetSearchEngine() {
+      pauseSimulation();
+      stepCount = 0;
+      comparisonCount = 0;
+      linearIndex = 0;
+      linearFound = false;
+
+      binaryLow = 0;
+      binaryHigh = dataArray.length - 1;
+      binaryMid = -1;
+      binaryFound = false;
+      binaryPhase = 'CALC_MID';
+
+      document.getElementById('metric-steps').innerText = '0';
+      document.getElementById('metric-comps').innerText = '0';
+      document.getElementById('metric-status-pill').innerText = 'Siap Dijalankan';
+      document.getElementById('metric-status-pill').className = 'font-label-badge text-label-badge uppercase px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface';
+
+      document.getElementById('trace-step-title').innerHTML = '<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span>LANGKAH 0: INITIALIZATION</span>';
+      document.getElementById('trace-step-narrative').innerText = 'Simulator telah direset. Silakan tentukan target pencarian lalu jalankan penelusuran.';
+      document.getElementById('trace-badge-idx').innerText = 'Indeks: -';
+
+      updatePseudocodeView();
+      renderArray();
+    }
+
+    function applyTargetFromInput() {
+      const val = parseInt(document.getElementById('input-target').value, 10);
+      if (!isNaN(val)) {
+        targetValue = val;
+        resetSearchEngine();
+      }
+    }
+
+    function generateRandomData() {
+      const size = 10;
+      const set = new Set();
+      while (set.size < size) {
+        set.add(Math.floor(Math.random() * 95) + 5);
+      }
+      dataArray = Array.from(set);
+      if (currentAlgorithm === 'binary') {
+        dataArray.sort((a, b) => a - b);
+      }
+      // Set target to an existing element or nearby
+      targetValue = dataArray[Math.floor(Math.random() * dataArray.length)];
+      document.getElementById('input-target').value = targetValue;
+      resetSearchEngine();
+      updateTheoreticalStats();
+    }
+
+    function shuffleTarget() {
+      targetValue = dataArray[Math.floor(Math.random() * dataArray.length)];
+      document.getElementById('input-target').value = targetValue;
+      resetSearchEngine();
+    }
+
+    function promptManualData() {
+      const currentStr = dataArray.join(', ');
+      const input = prompt('Masukkan daftar angka dipisahkan koma (maks 14 angka):', currentStr);
+      if (input !== null) {
+        const parsed = input.split(',')
+          .map(x => parseInt(x.trim(), 10))
+          .filter(x => !isNaN(x));
+        
+        if (parsed.length >= 3) {
+          dataArray = parsed.slice(0, 14);
+          if (currentAlgorithm === 'binary') {
+            dataArray.sort((a, b) => a - b);
+          }
+          if (!dataArray.includes(targetValue)) {
+            targetValue = dataArray[0];
+            document.getElementById('input-target').value = targetValue;
+          }
+          resetSearchEngine();
+          updateTheoreticalStats();
+        } else {
+          alert('Mohon masukkan minimal 3 angka valid.');
+        }
+      }
+    }
+
+    function updateSpeed(val) {
+      animSpeed = 2100 - parseInt(val, 10);
+      document.getElementById('speed-label').innerText = (animSpeed / 1000).toFixed(1) + 's';
+      if (isPlaying) {
+        pauseSimulation();
+        startSimulation();
+      }
+    }
+
+    function updateMetrics() {
+      document.getElementById('metric-steps').innerText = stepCount;
+      document.getElementById('metric-comps').innerText = comparisonCount;
+    }
+
+    function updateTheoreticalStats() {
+      const n = dataArray.length;
+      document.getElementById('metric-n-elements').innerText = n;
+      if (currentAlgorithm === 'binary') {
+        const maxSteps = Math.ceil(Math.log2(n + 1));
+        document.getElementById('metric-max-steps').innerText = maxSteps;
+        document.getElementById('metric-max-steps-formula').innerText = `⌈log2(${n})⌉ komparasi maksimal`;
+      } else {
+        document.getElementById('metric-max-steps').innerText = n;
+        document.getElementById('metric-max-steps-formula').innerText = `${n} komparasi sekuensial (N)`;
+      }
+    }
+
+    // Init on execution
+    initVisualizer();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-1px_16px_rgba(0,0,0,0.4)] py-space-xl"><div class="w-full px-gutter md:px-margin flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex flex-col items-center md:items-start gap-space-xs"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-surface font-bold">VisuAlgo PTIK</span><span class="font-label-mono text-label-mono px-space-xs py-0.5 rounded bg-surface-container-high text-secondary">Interactive Lab</span></div><p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left">Media Pembelajaran Interaktif Visualisasi Algoritma Sorting dan Searching berbasis Web.</p></div><div class="flex flex-col items-center md:items-end gap-space-xs text-center md:text-right"><p class="font-label-mono text-label-mono text-primary">Penelitian Pengembangan Model ADDIE</p><p class="font-body-sm text-body-sm text-on-surface-variant">Dikembangkan oleh <span class="text-on-surface font-semibold">Riski Adha Nursalim</span></p><p class="font-body-sm text-body-sm text-on-surface-variant/70">Program Studi Pendidikan Teknik Informatika &amp; Komputer (PTIK)</p></div></div></footer></body></html>
